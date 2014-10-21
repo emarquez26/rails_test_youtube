@@ -1,12 +1,20 @@
-<center> 
+<center>
   <h2>Videos most popular in youtube</h2>
-  <p><% @info.videos.each do |video| %>
-    <%= '->  ' %><%= link_to "https://www.youtube.com/watch?v=#{video.unique_id}", "https://www.youtube.com/watch?v=#{video.unique_id}", target: '_blank' %>
-    <%= video.description %><br><br>
-    <!--<iframe width="560" height="315" src="//www.youtube.com/embed/<%= video.unique_id %>" frameborder="0" allowfullscreen></iframe>-->
-
-
-    <img alt="" src="//i.ytimg.com/vi/<%= video.unique_id %>/mqdefault.jpg" aria-hidden="true" width="196">
-    <% end %>
-  </p>
+  <div class="row">
+    <p><% @info.videos.each do |video| %>
+      <div class="col-sm-4">
+        <div class="thumbnail">
+          <%= link_to "https://www.youtube.com/v/#{video.unique_id}?version=3&f=standard&d=ARPGKBjorFhRO9PU-FPTCxUO88HsQjpE1a8d1GxQnGDm&app=youtube_gdata", target: '_blank' do %>
+            <img class="img-thumbnail" alt="Thumbnail Image" src="<%= video.thumbnails[1].url %>" aria-hidden="true"/>
+            <%= "#{video.title.at(1..50)}..." %>
+          <% end %>
+          <div class="caption">
+            <%= "#{video.description.at(1..74)}..." %><br>
+          </div>
+      <!--<iframe width="560" height="315" src="//www.youtube.com/embed/<%= video.unique_id %>" frameborder="0" allowfullscreen></iframe>-->
+        </div>
+      </div>
+    <% end %></p>
+  </div>
 </center>
+

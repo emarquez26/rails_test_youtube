@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'devise'
 gem 'youtube_it', '~> 2.4.2'
+gem 'omniauth-facebook'
 gem 'rails', '4.1.6'
 gem 'sqlite3'
 gem 'sass-rails', '~> 4.0.3'
@@ -15,3 +17,4 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'pry-rails'
+gem 'twitter-bootstrap-rails'
