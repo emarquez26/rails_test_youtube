@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/medihack/make_flaggable.git
+  revision: b0831cf7a4909adef48f4e731c96b7b99da882f9
+  specs:
+    make_flaggable (0.0.3)
+      activerecord (>= 3.0, < 4.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -207,6 +214,7 @@ DEPENDENCIES
   google-api-client (~> 0.7.1)
   jbuilder (~> 2.0)
   jquery-rails
+  make_flaggable!
   omniauth-facebook
   pry-rails
   rails (= 4.1.6)

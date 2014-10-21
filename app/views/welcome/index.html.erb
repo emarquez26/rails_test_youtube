@@ -1,3 +1,9 @@
+<script type="text/javascript">
+function reply_click(clicked_id)
+{
+    alert(clicked_id);
+}
+</script>
 <center>
   <h2>Videos most popular in youtube</h2>
   <div class="row">
@@ -10,6 +16,8 @@
           <% end %>
           <div class="caption">
             <%= "#{video.description.at(1..74)}..." %><br>
+            <%= tag "input", { "type" => "button", "value" => "like", "onclick" => "reply_click(this.id)", "id" => "like_#{video.unique_id}", "class" => "btn btn-success btn-xs" } %> 
+            <!--<button type="submit" class="btn btn-success btn-xs" id="like_#{video.unique_id}" onClick="reply_click(this.id)">Me gusta</button> -->
           </div>
       <!--<iframe width="560" height="315" src="//www.youtube.com/embed/<%= video.unique_id %>" frameborder="0" allowfullscreen></iframe>-->
         </div>
