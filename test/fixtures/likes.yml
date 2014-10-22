@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: likes
+#
+#  id         :integer          not null, primary key
+#  user_email :string(255)
+#  video_id   :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_user: MyString
+  id_video: MyString
+
+two:
+  id_user: MyString
+  id_video: MyString

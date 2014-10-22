@@ -1,28 +1,25 @@
-<script type="text/javascript">
-function reply_click(clicked_id)
-{
-    alert(clicked_id);
-}
-</script>
-<center>
-  <h2>Videos most popular in youtube</h2>
-  <div class="row">
-    <p><% @info.videos.each do |video| %>
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <%= link_to "https://www.youtube.com/v/#{video.unique_id}?version=3&f=standard&d=ARPGKBjorFhRO9PU-FPTCxUO88HsQjpE1a8d1GxQnGDm&app=youtube_gdata", target: '_blank' do %>
-            <img class="img-thumbnail" alt="Thumbnail Image" src="<%= video.thumbnails[1].url %>" aria-hidden="true"/>
-            <%= "#{video.title.at(1..50)}..." %>
-          <% end %>
-          <div class="caption">
-            <%= "#{video.description.at(1..74)}..." %><br>
-            <%= tag "input", { "type" => "button", "value" => "like", "onclick" => "reply_click(this.id)", "id" => "like_#{video.unique_id}", "class" => "btn btn-success btn-xs" } %> 
-            <!--<button type="submit" class="btn btn-success btn-xs" id="like_#{video.unique_id}" onClick="reply_click(this.id)">Me gusta</button> -->
+<div class="all-body" style="display:none"></div>
+  <center>
+  
+    <h2>Videos most popular in youtube</h2>
+    <div class="row">
+      <p><% @video_information.videos.each do |video| %>
+        <div class="col-sm-4">
+          <div class="see-video" id="<%= video.unique_id %>">
+            <a href="#" onclick="ocultar_div('<%= video.unique_id %>');" style="float: right;"><font size="2">Cerrar</font></a>
+            
+            <%= link_to "Like", likes_path(:video_id => video.unique_id), class: "btn btn-success btn-sm", remote: true, method: :delete, :onclick => "ocultar_button()" %>
           </div>
-      <!--<iframe width="560" height="315" src="//www.youtube.com/embed/<%= video.unique_id %>" frameborder="0" allowfullscreen></iframe>-->
+          <div class="thumbnail">
+              <img class="img-thumbnail" alt="Thumbnail Image" src="<%= video.thumbnails[1].url %>" aria-hidden="true"/>
+              <%= "#{video.title.at(1..50)}..." %>
+            <div class="caption">
+              <%= "#{video.description.at(1..74)}..." %><br>
+              <%= tag "input", { "type" => "button", "value" => "Watch video", "onclick" => "mostar_div('#{video.unique_id}');", "id" => "like_#{video.unique_id}", "class" => "btn btn-primary btn-xs" } %> 
+            </div>
+          </div>
         </div>
-      </div>
-    <% end %></p>
-  </div>
-</center>
-
+      <% end %></p>
+    </div>
+  </center>
+</div>

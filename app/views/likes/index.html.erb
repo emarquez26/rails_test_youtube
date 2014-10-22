@@ -1,0 +1,13 @@
+  <div class="col-sm-4">
+<% @select_dates.each do |video| %>
+  <% video = @client.video_by(video.video_id) %>
+    <div class="thumbnail">
+      <img class="img-thumbnail" alt="Thumbnail Image" src="<%= video.thumbnails[1].url %>" aria-hidden="true"/>
+      <%= "#{video.title.at(1..50)}..." %>
+    <div class="caption">
+      <%= "#{video.description.at(1..74)}..." %><br>
+      <%= tag "input", { "type" => "button", "value" => "Watch video", "onclick" => "mostar_div('#{video.unique_id}');", "id" => "like_#{video.unique_id}", "class" => "btn btn-primary btn-xs" } %> 
+    </div>
+  </div>
+<% end %>
+  </div>

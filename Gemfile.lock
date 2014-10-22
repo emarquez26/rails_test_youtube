@@ -35,13 +35,19 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.6)
+    annotate (2.6.5)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     arel (5.0.1.20140414130214)
     autoparse (0.3.3)
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
+    awesome_print (1.2.0)
     bcrypt (3.1.7)
     builder (3.2.2)
+    code_analyzer (0.4.5)
+      sexp_processor
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -50,6 +56,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    colored (1.2)
     devise (3.4.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -138,6 +145,16 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.1.6)
       sprockets-rails (~> 2.0)
+    rails_best_practices (1.15.4)
+      activesupport
+      awesome_print
+      code_analyzer (>= 0.4.3)
+      colored
+      erubis
+      i18n
+      json
+      require_all
+      ruby-progressbar
     railties (4.1.6)
       actionpack (= 4.1.6)
       activesupport (= 4.1.6)
@@ -146,9 +163,11 @@ GEM
     rake (10.3.2)
     rdoc (4.1.2)
       json (~> 1.4)
+    require_all (1.3.2)
     responders (1.1.1)
       railties (>= 3.2, < 4.2)
     retriable (2.0.0.beta5)
+    ruby-progressbar (1.6.0)
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
@@ -158,6 +177,7 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    sexp_processor (4.4.4)
     signet (0.5.1)
       addressable (>= 2.2.3)
       faraday (>= 0.9.0.rc5)
@@ -208,6 +228,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  annotate (~> 2.6.5)
   coffee-rails (~> 4.0.0)
   devise
   dotenv-rails
@@ -218,6 +239,7 @@ DEPENDENCIES
   omniauth-facebook
   pry-rails
   rails (= 4.1.6)
+  rails_best_practices (~> 1.15.4)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring

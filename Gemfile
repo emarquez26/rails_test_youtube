@@ -15,6 +15,11 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
+group :development do
+  gem 'annotate', '~> 2.6.5'
+  gem 'rails_best_practices', '~> 1.15.4'
+end
+
 gem 'spring',        group: :development
 gem 'dotenv-rails', :groups => [:development, :test]
 gem 'pry-rails'
