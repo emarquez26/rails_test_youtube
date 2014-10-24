@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141022172451) do
+ActiveRecord::Schema.define(version: 20141024184532) do
 
   create_table "likes", force: true do |t|
     t.string   "user_email"
@@ -44,5 +44,14 @@ ActiveRecord::Schema.define(version: 20141022172451) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "videos", force: true do |t|
+    t.string   "video_id"
+    t.string   "video_name"
+    t.text     "video_description"
+    t.string   "video_image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

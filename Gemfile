@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+gem "kaminari"
+gem 'factory_girl_rails'
 gem 'devise'
 gem 'youtube_it', '~> 2.4.2'
 gem 'omniauth-facebook'
@@ -18,6 +20,11 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 group :development do
   gem 'annotate', '~> 2.6.5'
   gem 'rails_best_practices', '~> 1.15.4'
+end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem "capybara"
 end
 
 gem 'spring',        group: :development

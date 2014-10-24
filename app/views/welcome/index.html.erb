@@ -1,25 +1,39 @@
 <div class="all-body" style="display:none"></div>
   <center>
-  
     <h2>Videos most popular in youtube</h2>
     <div class="row">
       <p><% @video_information.videos.each do |video| %>
         <div class="col-sm-4">
           <div class="see-video" id="<%= video.unique_id %>">
-            <a href="#" onclick="ocultar_div('<%= video.unique_id %>');" style="float: right;"><font size="2">Cerrar</font></a>
-            
-            <%= link_to "Like", likes_path(:video_id => video.unique_id), class: "btn btn-success btn-sm", remote: true, method: :delete, :onclick => "ocultar_button()" %>
+            <button type="button" class="btn btn-link" onclick="ocultar_div('<%= video.unique_id %>');" style="float: right;"><font size="2">Cerrar</font></button>
+            <% if current_user and !@like.find_by(user_email: current_user.email, video_id: video.unique_id) %>
+              <%= link_to "Like", likes_path(:video_id => video.unique_id), class: "btn btn-success btn-sm", remote: true, method: :post, :onclick => "refresh()" if current_user %>
+            <% end %>
           </div>
-          <div class="thumbnail">
-              <img class="img-thumbnail" alt="Thumbnail Image" src="<%= video.thumbnails[1].url %>" aria-hidden="true"/>
-              <%= "#{video.title.at(1..50)}..." %>
-            <div class="caption">
-              <%= "#{video.description.at(1..74)}..." %><br>
-              <%= tag "input", { "type" => "button", "value" => "Watch video", "onclick" => "mostar_div('#{video.unique_id}');", "id" => "like_#{video.unique_id}", "class" => "btn btn-primary btn-xs" } %> 
+          <div id="listado">
+            <div class="thumbnail">
+                <img class="img-thumbnail" alt="Thumbnail Image" src="<%= video.thumbnails[1].url %>" aria-hidden="true"/>
+                <%= "#{video.title.at(0..50)}..." %>
+              <div class="caption">
+                <p><%= "#{video.description.at(0..74)}..." %></p>
+                <p><%= tag "input", { "type" => "button", "value" => "Watch video", "onclick" => "mostrar_div('#{video.unique_id}');", "id" => "like_#{video.unique_id}", "class" => "btn btn-primary btn-xs" } %></p>
+                <p><%= "Likes " %><button class="btn btn-success btn-xs" onclick="user_video_like('<%= video.unique_id %>');"><%= "#{@like.select { |like_video| like_video.video_id == video.unique_id }.count}" %></button></p>
+                <div class="see-like" id="<%= video.unique_id %>">
+                  <button type="button" class="btn btn-link" onclick="ocultar_div('<%= video.unique_id %>');" style="float: right;"><font size="2">x</font></button>
+                  <p>users who also like it:
+                    <% @like.where(video_id: video.unique_id).select do |like_user_video| %>
+                      <span class="badge">
+                        <strong><%= like_user_video.user_email %></strong>
+                      </span>
+                    <% end %>
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       <% end %></p>
     </div>
+    <%= render "paging" %>
   </center>
 </div>

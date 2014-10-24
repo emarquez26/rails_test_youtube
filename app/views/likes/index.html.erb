@@ -1,13 +1,34 @@
-  <div class="col-sm-4">
-<% @select_dates.each do |video| %>
-  <% video = @client.video_by(video.video_id) %>
-    <div class="thumbnail">
-      <img class="img-thumbnail" alt="Thumbnail Image" src="<%= video.thumbnails[1].url %>" aria-hidden="true"/>
-      <%= "#{video.title.at(1..50)}..." %>
-    <div class="caption">
-      <%= "#{video.description.at(1..74)}..." %><br>
-      <%= tag "input", { "type" => "button", "value" => "Watch video", "onclick" => "mostar_div('#{video.unique_id}');", "id" => "like_#{video.unique_id}", "class" => "btn btn-primary btn-xs" } %> 
+<div class="all-body" style="display:none"></div>
+<center>  
+    <h2>My favorites videos for me</h2>
+    <div class="row">
+      <p><% @select_dates.each do |video| %>
+        <% video = @client.video_by(video.video_id) %>
+        <div class="col-sm-4">
+          <div class="see-video" id="<%= video.unique_id %>">
+            <button type="button" class="btn btn-link" onclick="ocultar_div('<%= video.unique_id %>');" style="float: right;"><font size="2">Cerrar</font></button>
+            <%= link_to "Unlike", like_path(video.unique_id), class: "btn btn-danger btn-sm", remote: true, method: :delete, :onclick => "refresh()" %>
+          </div>
+          <div class="thumbnail">
+            <img class="img-thumbnail" alt="Thumbnail Image" src="<%= video.thumbnails[1].url %>" aria-hidden="true"/>
+            <%= "#{video.title.at(0..50)}..." %>
+            <div class="caption">
+              <p><%= "#{video.description.at(0..74)}..." %></p>
+              <p><button type="button" class="btn btn-primary btn-xs" onclick="mostrar_div('<%= video.unique_id %>');" id="like_<%= video.unique_id %>">Watch video</button></p>
+              <p><%= "Likes " %><button class="btn btn-success btn-xs" onclick="user_video_like('<%= video.unique_id %>');"><%= "#{@like_videos_count.select { |like_video| like_video.video_id == video.unique_id }.count}" %></button></p>
+              <div class="see-like" id="<%= video.unique_id %>">
+              <button type="button" class="btn btn-link" onclick="ocultar_div('<%= video.unique_id %>');" style="float: right;"><font size="2">x</font></button>
+                <p>users who also like it:
+                  <% @like_videos_count.where(video_id: video.unique_id).select do |like_user_video| %>
+                    <span class="badge">
+                      <strong><%= like_user_video.user_email %></strong>
+                    </span>
+                  <% end %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %></p>
     </div>
-  </div>
-<% end %>
-  </div>
+</center>

@@ -2,7 +2,7 @@ body {
   padding-top: 20px;
 }
 
-.see-video{
+.see-video, .see-like{
   padding: 20px;
   width: 600px;
   height: 400px;
@@ -14,6 +14,10 @@ body {
   background-color: #e5e5e5;
   left: calc(50% - 280px);
   top: calc(50% - 170px);
+}
+
+.see-like{
+  height: auto;
 }
 
 .all-body{

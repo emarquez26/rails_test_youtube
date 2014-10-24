@@ -26,7 +26,7 @@
               <%= link_to 'Log in', new_user_session_path unless current_user %>
             <% end %>
           </li>
-          <li><%= link_to "Favorites videos", :controller => "/likes", :action => "index" %></li>  
+          <li><%= link_to "Favorites videos", :controller => "/likes", :action => "index" if current_user %></li>  
         </ul>
       </div>
   </div>
